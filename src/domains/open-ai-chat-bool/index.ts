@@ -2,8 +2,9 @@ import {Config} from "../config";
 import axios from "axios";
 
 const openaiApiKey = Config.chatOpenAIKey;
-export class openAiMain{
-    static async  getChatResponse(userText: string) {
+
+export class openAiBool{
+static async getChatResponse(userText: string) {
     try {
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
@@ -11,7 +12,7 @@ export class openAiMain{
                 "model": "gpt-3.5-turbo",
                 "messages": [{
                     "role": "system",
-                    "content": "Ты менеджер salescout (серивс по автоматизации бизнеса). Максимальное количество слов - 35. Цель - кратко рассказать о том как удобен этот сервис. Подстраивайся под сообщение клиента, что бы быть в рамках его лексикона, так же старайся минимизировать количество текста. " //Привет, как ты ? , есть предложение по бизнесу
+                    "content": "Ты менеджер salescout.me (сервис по автоматизации бизнеса) . Проанализируй сообщение пользователя и скажи true (готов слушать рекламу) или false (Еще не готов, нужно пообщаться). Значит ты возвращаешь в message - одно слово true или false." //Привет, как ты ? , есть предложение по бизнесу
 
                 }, {
                     "role": "user",
@@ -34,9 +35,9 @@ export class openAiMain{
     }
 }
 
-    static async handleUserMessage(userText: string): Promise<string> {
+static async handleUserMessage(userText: string): Promise<string> {
     try {
-        const responses = await openAiMain.getChatResponse(userText);
+        const responses = await openAiBool.getChatResponse(userText);
         let chatResponse: string = "";
         // Здесь вы можете отправить ответы обратно пользователю,
         // используя ваш механизм общения (например, WhatsApp API)

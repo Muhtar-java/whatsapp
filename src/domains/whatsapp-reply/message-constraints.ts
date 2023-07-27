@@ -89,18 +89,27 @@
     return variants[index];
   };
   
-  export const firstMessagesWithStoreName = (storeName = "") => {
+  export const firstMessages = () => {
+  
+    return [
+      `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}.`,
+      `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}.`,
+      `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}.`,
+    ];
+  };
+  
+  export const middleMessagesWithStoreName = (storeName = "") => {
     if (!storeName) {
       return [];
     }
   
     return [
-      `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}. Это магазин ${storeName}?`,
-      `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}. ${storeName}?`,
-      `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}. ${storeName} - это ваш магазин?`,
+      `Это магазин ${storeName}?`,
+      `${storeName}?`,
+      `${storeName} - это ваш магазин?`,
     ];
   };
-  
+/*
   export const getRandomFirstMessage = (storeName = "") => {
     const firstMessages = [
       `${getHelloMessage()}${getSmile()}${getSignAfterHelloMessage()} ${getPerformance()} ${getManagerName()}. У вас есть магазин на ${getKaspiName()}?`,
@@ -110,7 +119,7 @@
     ];
   
     const availableMessages = firstMessages.concat(
-      firstMessagesWithStoreName(storeName)
+      firstMessages()
     );
   
     const index = parseInt((Math.random() * availableMessages.length).toString());
@@ -122,7 +131,7 @@
   
     return message;
   };
-  
+  */
   export const linkMessages = () => {
     return [
       `Хотите увеличить продажи на ${getKaspiName}? 
