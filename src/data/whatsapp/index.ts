@@ -1,4 +1,8 @@
 import { MessagesModel } from '../../db/whatsapp';
+import { initDatabase, kaspiCollection } from '../../db/whatsapp/initDatabase';
+
+
+initDatabase();
 
 export type NewMessageType = {
     chatId: string;
@@ -14,6 +18,15 @@ class MessagesData {
         return await msg.save();
     }
 
+    static async updateMerchant(chatId:String, status:Boolean){
+        await kaspiCollection.updateOne({"storePhone":"+" + chatId.replace("@c.us","")}, { $set: {"status":status}});
+    }
+
+    static async getAllUsers(){
+        return await kaspiCollection.find().toArray();
+    }
 }
+
+
 
 export { MessagesData };

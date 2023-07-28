@@ -4,7 +4,7 @@ import { Config } from "./domains/config";
 import Queue from "bull";
 import { Utils } from "./utils";
 import { MessagesData } from "./data/whatsapp";
-import { whatsAppClient } from "./whatsapp";
+import { whatsAppClient } from "./utils/whatsapp-connect";
 
 type MessageJobType = {
     chatId: string,
